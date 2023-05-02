@@ -66,8 +66,22 @@ func TestInsert(t *testing.T) {
 		func(t *testing.T) {
 			s := ds.NewStack()
 			assert.Nil(t, s.Push(1))
+			assert.Nil(t, s.Push(2))
+			assert.Equal(t, s.Size(), 2)
+			assert.Equal(t, s.Pop(), 2)
+			assert.Equal(t, s.Size(), 1)
+		})
+	t.Run("if the size is n, then after n pops, the stack is empty and has zero size",
+		func(t *testing.T) {
+			s := ds.NewStack()
+			assert.Nil(t, s.Push(1))
 			assert.Equal(t, s.Size(), 1)
 			assert.Equal(t, s.Pop(), 1)
 			assert.Equal(t, s.Size(), 0)
+		})
+	t.Run("popping from an empty stack return error: ErrNoSuchElement",
+		func(t *testing.T) {
+			s := ds.NewStack()
+			assert.Equal(t, s.Pop(), ds.ErrNoSuchElement)
 		})
 }
