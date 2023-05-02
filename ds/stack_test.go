@@ -49,11 +49,11 @@ func TestInsert(t *testing.T) {
 		func(t *testing.T) {
 			s := ds.NewStack()
 			assert.Nil(t, s.Push("as"))
-			assert.Equal(t, s.Peek(), "as")
-			assert.Equal(t, s.Size(), 1)
+			assert.Equal(t, "as", s.Peek())
+			assert.Equal(t, 1, s.Size())
 			assert.Nil(t, s.Push(1))
-			assert.Equal(t, s.Peek(), 1)
-			assert.Equal(t, s.Size(), 2)
+			assert.Equal(t, 1, s.Peek())
+			assert.Equal(t, 2, s.Size())
 		})
 
 	t.Run("peeking into an empty stack return error: ErrNoSuchElement",
@@ -67,21 +67,21 @@ func TestInsert(t *testing.T) {
 			s := ds.NewStack()
 			assert.Nil(t, s.Push(1))
 			assert.Nil(t, s.Push(2))
-			assert.Equal(t, s.Size(), 2)
-			assert.Equal(t, s.Pop(), 2)
-			assert.Equal(t, s.Size(), 1)
+			assert.Equal(t, 2, s.Size())
+			assert.Equal(t, 2, s.Pop())
+			assert.Equal(t, 1, s.Size())
 		})
 	t.Run("if the size is n, then after n pops, the stack is empty and has zero size",
 		func(t *testing.T) {
 			s := ds.NewStack()
 			assert.Nil(t, s.Push(1))
-			assert.Equal(t, s.Size(), 1)
-			assert.Equal(t, s.Pop(), 1)
-			assert.Equal(t, s.Size(), 0)
+			assert.Equal(t, 1, s.Size())
+			assert.Equal(t, 1, s.Pop())
+			assert.Equal(t, 0, s.Size())
 		})
 	t.Run("popping from an empty stack return error: ErrNoSuchElement",
 		func(t *testing.T) {
 			s := ds.NewStack()
-			assert.Equal(t, s.Pop(), ds.ErrNoSuchElement)
+			assert.Equal(t, ds.ErrNoSuchElement, s.Pop())
 		})
 }
