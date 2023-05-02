@@ -70,6 +70,7 @@ func TestInsert(t *testing.T) {
 			assert.Equal(t, 2, s.Size())
 			assert.Equal(t, 2, s.Pop())
 			assert.Equal(t, 1, s.Size())
+			assert.Equal(t, 1, s.Pop())
 		})
 	t.Run("if the size is n, then after n pops, the stack is empty and has zero size",
 		func(t *testing.T) {
