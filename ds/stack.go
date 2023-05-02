@@ -27,5 +27,15 @@ func (s *Stack) Peek() interface{} {
 	if s.Size() <= 0 {
 		return ErrNoSuchElement
 	}
-	return s.values[s.Size()-1]
+	return s.values[s.GetLastIndex()]
+}
+
+func (s *Stack) Pop() interface{} {
+	value := s.values[s.GetLastIndex()]
+	s.values = s.values[:s.GetLastIndex()]
+	return value
+}
+
+func (s *Stack) GetLastIndex() int {
+	return s.Size() - 1
 }

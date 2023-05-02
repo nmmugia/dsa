@@ -61,4 +61,13 @@ func TestInsert(t *testing.T) {
 			s := ds.NewStack()
 			assert.Equal(t, ds.ErrNoSuchElement, s.Peek())
 		})
+
+	t.Run("if one pushes x then pops, the value popped is x, and the size is one less than the old size",
+		func(t *testing.T) {
+			s := ds.NewStack()
+			assert.Nil(t, s.Push(1))
+			assert.Equal(t, s.Size(), 1)
+			assert.Equal(t, s.Pop(), 1)
+			assert.Equal(t, s.Size(), 0)
+		})
 }
